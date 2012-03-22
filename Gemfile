@@ -8,6 +8,10 @@ gem "sinatra"
 gem "coffee-script"
 gem "sinatra-contrib", :require => "sinatra/contrib/all"
 gem "sinatra-assetpack", :require => "sinatra/assetpack"
+gem "grit"
+gem "redcarpet"
+gem "pygments.rb"
+gem "charlock_holmes"
 
 group :development do
   gem "pry"
