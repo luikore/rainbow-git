@@ -83,6 +83,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl
   grit
+  i18n
   pg
   pry
   pygments.rb

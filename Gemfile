@@ -12,6 +12,7 @@ gem "grit"
 gem "redcarpet"
 gem "pygments.rb"
 gem "charlock_holmes"
+gem "i18n"
 
 group :development, :test do
   gem "pry"
