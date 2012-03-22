@@ -4,9 +4,12 @@ require_relative "../test_helper"
 
 class FormHelpersTest < TestCase
   User = Struct.new :nick, :errors
+  def User.name
+    'user'
+  end
 
   def setup
-    @f = ::FormHelpers::Proxy.new(User.new nick: 'hello')
+    @f = ::FormHelpers::Proxy.new(User.new 'hello')
   end
 
   def test_text
@@ -52,7 +55,7 @@ class FormHelpersTest < TestCase
   end
 
   def test_error
-    user = User.new errors: {openid: ['not exist', 'too short']}
+    user = User.new nil, {openid: ['not exist', 'too short']}
     f = ::FormHelpers::Proxy.new user
     out = f.error :openid
     assert out.start_with? '<span class="error">'

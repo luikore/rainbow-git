@@ -1,4 +1,6 @@
 # encoding: UTF-8
+require "json"
+require "cgi"
 
 module FormHelpers
   # call-seq:
