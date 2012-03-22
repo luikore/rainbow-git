@@ -1,7 +1,8 @@
 namespace :db do
   require "sequel"
   Sequel.extension :migration
-  DB = Sequel.sqlite('db/test.db')
+  ENV["RACK_ENV"] ||= "development"
+  require_relative "../../config/database"
 
   desc "Perform migration reset (full erase and migration up)"
   task :setup do
