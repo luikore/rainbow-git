@@ -48,6 +48,7 @@ class FormHelpers
         def #{f} field, opts={}
           opts = normalize field, opts
           %(<input type="#{f}" \#{opts.to_attrs}></input>)
+        end
       RUBY
     end
 
