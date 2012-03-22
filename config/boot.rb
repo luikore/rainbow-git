@@ -1,18 +1,24 @@
 require "rubygems"
 require "bundler"
-#require "bundle gems"
+
+# require "bundle gems"
 ENV["RACK_ENV"] ||= "development"
 Bundler.require(:default, ENV["RACK_ENV"].to_sym)
+
 # init database
 require_relative "database"
+
 # init sinatra
 set :sessions, true
 set :root, File.expand_path(".")
 set :views, settings.root + "/app/views"
+disable :protection
+
 # sinatra reloader on development
 if ENV["RACK_ENV"] == "development"
   require "sinatra/reloader"
 end
+
 # assetpack support
 assets do
   css_compression :sass
@@ -30,7 +36,9 @@ assets do
     "/css/*.css"
   ]
 end
-# require sinatra files
+
+# require project
 Dir.glob "./{lib,app/models,app/helpers,app/controllers}/**/*.rb" do |f|
   require f
 end
+use Rack::XProtection
