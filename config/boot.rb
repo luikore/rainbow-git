@@ -15,8 +15,9 @@ set :views, settings.root + "/app/views"
 disable :protection
 
 # sinatra reloader on development
-if ENV["RACK_ENV"] == "development"
+configure :development do
   require "sinatra/reloader"
+  also_reload "lib/**/*.rb", "app/{models,helpers}/*.rb"
 end
 
 # assetpack support
