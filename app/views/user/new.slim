@@ -1,0 +1,27 @@
+.container-fluid.well
+  .row-fluid
+    / = render "links"
+
+    .span-20
+      == form @user, action: '/user', method: 'post' do |f|
+        label
+          = t 'name'
+          br
+          == f.text :name, required: true
+
+        label
+          = t 'email'
+          br
+          == f.email :email, required: true
+
+        label
+          = t 'password'
+          br
+          == f.password :password, required: true
+
+        label
+          = t 'password_confirmation'
+          br
+          == f.password :password_confirmation, required: true
+
+        button.btn = t "sign_up"
