@@ -13,7 +13,7 @@ gem "redcarpet"
 gem "pygments.rb"
 gem "charlock_holmes"
 
-group :development do
+group :development, :test do
   gem "pry"
 end
 

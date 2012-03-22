@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class FormHelpers
+module FormHelpers
   # call-seq:
   #
   #   == form @post, action: '/a/b', method: 'delete' do |f|
