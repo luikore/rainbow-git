@@ -91,4 +91,8 @@ class String
   def html_safe
     SafeBuffer.new self
   end
+
+  def html_safe?
+    false
+  end
 end

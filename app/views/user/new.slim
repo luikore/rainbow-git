@@ -3,7 +3,7 @@
     / = render "links"
 
     .span-20
-      == form @user, action: '/user', method: 'post' do |f|
+      = form @user, action: '/user', method: 'post' do |f|
         label
           = t 'name'
           br

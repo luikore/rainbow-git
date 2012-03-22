@@ -1,6 +1,6 @@
 get '/user/new' do
   @user = User.new
-  slim :'user/new'
+  sl 'user/new'
 end
 
 post '/user' do

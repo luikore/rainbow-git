@@ -8,6 +8,14 @@ Bundler.require(:default, ENV["RACK_ENV"].to_sym)
 # init database
 require_relative "database"
 
+# init slim
+Slim::Engine.set_default_options \
+  :pretty => false,
+  :attr_wrapper => '"',
+  :attr_delimiter => {'class' => ' '},
+  :generator => Temple::Generators::ArrayBuffer,
+  :use_html_safe => true
+
 # init sinatra
 set :sessions, true
 set :root, File.expand_path(".")

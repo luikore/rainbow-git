@@ -3,7 +3,7 @@ helpers do
   include I18nHelpers
 
   def sl(template, options={})
-    slim(template, {:layout => :'layouts/application'}.merge(options))
+    slim(template.to_sym, {:layout => :'layouts/application'}.merge(options))
   end
 
   def current_user
