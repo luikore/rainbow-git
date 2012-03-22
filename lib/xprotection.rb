@@ -2,9 +2,9 @@
 
 module Rack
   # the "all-in-one" protection middleware
-  Protection = Struct.new(:app)
+  XProtection = Struct.new(:app)
 
-  class Protection
+  class XProtection
     SAFE_VERBS = %w[GET HEAD OPTIONS TRACE]
 
     def call env
