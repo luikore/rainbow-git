@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require "json"
 require "cgi"
+require_relative "core_extension/string"
 
 module FormHelpers
   # call-seq:
@@ -27,15 +28,15 @@ module FormHelpers
       method = 'post'
     end
     params = params.to_attrs
-    "<form method='#{method}' #{params}>#{csrf}#{method_override}#{body}</form>"
+    "<form method='#{method}' #{params}>#{csrf}#{method_override}#{body}</form>".html_safe
   end
 
   def csrf
-    "<input type='hidden' name='authenticity_token' value='#{session[:csrf]}'></input>"
+    "<input type='hidden' name='authenticity_token' value='#{session[:csrf]}'></input>".html_safe
   end
 
   def meta_csrf
-    "<meta name='csrf-param' content='authenticity_token'/><meta name='csrf-token' content='#{session[:csrf]}'/>"
+    "<meta name='csrf-param' content='authenticity_token'/><meta name='csrf-token' content='#{session[:csrf]}'/>".html_safe
   end
 
   Proxy = Struct.new :klass, :obj
@@ -49,7 +50,7 @@ module FormHelpers
       class_eval <<-RUBY, __FILE__, __LINE__
         def #{f} field, opts={}
           opts = normalize field, opts
-          %(<input type="#{f}" \#{opts.to_attrs}></input>)
+          %(<input type="#{f}" \#{opts.to_attrs}></input>).html_safe
         end
       RUBY
     end
@@ -58,20 +59,20 @@ module FormHelpers
       opts = normalize field, opts
       opts[:checked] = opts.delete(:value).present?
       opts[:value] = '1'
-      %(<input type="hidden" name="#{opts[:name]}" value="0"></input><input type="checkbox" #{opts.to_attrs}></input>)
+      %(<input type="hidden" name="#{opts[:name]}" value="0"></input><input type="checkbox" #{opts.to_attrs}></input>).html_safe
     end
 
     def radio field, opts={}
       opts = normalize field, opts
       opts[:checked] = opts.delete(:value).present?
       opts[:value] = '1'
-      %(<input type="hidden" name="#{opts[:name]}" value="0"></input><input type="radio" #{opts.to_attrs}></input>)
+      %(<input type="hidden" name="#{opts[:name]}" value="0"></input><input type="radio" #{opts.to_attrs}></input>).html_safe
     end
 
     def textarea field, opts={}
       opts = normalize field, opts
       v = ::Temple::Utils.escape_html(opts.delete :value)
-      %(<textarea #{opts.to_attrs}>#{v}</textarea>)
+      %(<textarea #{opts.to_attrs}>#{v}</textarea>).html_safe
     end
 
     def select field, candidates, opts={}
@@ -86,6 +87,7 @@ module FormHelpers
         r << '>' << display << '</option>'
       end
       r << '</select>'
+      r.html_safe
     end
 
     def submit text, opts={}
@@ -93,13 +95,13 @@ module FormHelpers
       opts[:class] ||= 'button'
       opts[:value] ||= text
       opts[:'data-disable-with'] ||= "ʅ(‾◡◝)ʃ ,｡○°"
-      %(<input type="submit" #{opts.to_attrs}></input>)
+      %(<input type="submit" #{opts.to_attrs}></input>).html_safe
     end
 
     def error field
       content = obj.errors[field.to_sym].join ','
       content = ::Temple::Utils.escape_html content
-      %(<span class="error">#{content}</span>)
+      %(<span class="error">#{content}</span>).html_safe
     end
 
     private
