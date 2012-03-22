@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "slim"
 gem "sass"
-gem "sqlite3"
+gem "pg"
 gem "sequel"
 gem "sinatra"
 gem "coffee-script"
