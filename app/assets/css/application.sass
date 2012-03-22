@@ -1,0 +1,41 @@
+@import "app/assets/css/config"
+@import "app/assets/css/bootstrap"
+
+body
+  padding-top: 47px
+
+.navbar
+  .navbar-inner
+    +box-shadow(none)
+  .nav-profile
+    float: right
+    font-size: 110%
+    a
+      text-shadow: none!important
+      border-left: 1px solid rgba($white, 0)
+      border-right: 1px solid rgba($white, 0)
+      &:hover
+        border-left: 1px solid rgba($white, 0.2)
+        border-right: 1px solid rgba($white, 0.2)
+
+.gray
+  color: gray
+
+.red
+  color: red
+
+.green
+  color: green
+
+.blue
+  color: blue
+
+// tweak form elem spacing
+form
+  .help-block
+    margin-top: 0
+  label
+    margin-bottom: 13px
+    cursor: pointer
+  input, textarea, select, .uneditable-input
+    margin-bottom: 0

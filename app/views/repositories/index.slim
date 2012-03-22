@@ -1,0 +1,21 @@
+#repositories
+  h1 Repositories
+  table.table
+    tr
+      th name
+      th homepage
+      th description
+      - @repositories.each do |repository|
+        tr
+          td
+            = link_to repository.owner.name, repository.owner.name
+            | /
+            = link_to repository.name, repository.path
+          td
+            - if repository.homepage
+              p= link_to repository.homepage
+          td
+            - if repository.description
+              p= repository.description
+
+= link_to 'New Repository', new_repository_path

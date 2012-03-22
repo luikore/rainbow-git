@@ -1,0 +1,17 @@
+table class="table"
+  th Name
+  th Age
+  th Message
+  - if @path.present?
+    tr
+      td
+        i class="icon-share-alt"
+        = link_to '..', File.join(@path, '..')
+      td
+      td
+  - @tree.contents.select{ |i| i.is_a?(Grit::Tree)}.each do |content|
+    = render :partial => "item", :locals => { :content => content }
+  - @tree.contents.select{ |i| i.is_a?(Grit::Blob)}.each do |content|
+    = render :partial => "item", :locals => { :content => content }
+  - @tree.contents.select{ |i| i.is_a?(Grit::Submodule)}.each do |content|
+    = render :partial => "item", :locals => { :content => content }

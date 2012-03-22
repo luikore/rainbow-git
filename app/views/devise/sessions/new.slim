@@ -1,0 +1,23 @@
+.container-fluid.well
+  .row-fluid
+    = render "links"
+
+    .span-20
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        label
+          = t 'email'
+          br
+          = f.email_field :email, required: true
+
+        label
+          = t 'password'
+          br
+          = f.password_field :password, required: true
+
+        - if devise_mapping.rememberable?
+          label.checkbox
+            = f.check_box :remember_me
+            = t '.remember_me'
+
+        button.btn = t "sign_in"
+

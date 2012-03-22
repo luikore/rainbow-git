@@ -1,0 +1,9 @@
+#files
+  #file
+    #meta
+      h3= @blob.name
+    #data
+      - if @blob.name =~ /\.(md|mkdn?|mdown|markdown)/i
+        = raw Markup.render(@blob.data)
+      - else
+        = raw Pygments.highlight(@blob.data, options: { encoding: 'utf-8', linenos: true})

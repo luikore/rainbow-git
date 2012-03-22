@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=7"
+    link rel="icon" href="" sizes="32x32"
+    link rel="icon" href="" sizes="48x48"
+    title RainBowGit
+    == css :application, :media => "all"
+    == js :application
+
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand href="/" RainbowGit
+          ul.nav.nav-profile
+            - if current_user
+              li style="background:rgba(244, 244, 255, 0.3);"
+                a href=users_path
+                  i.icon-home
+              li
+                a href=destroy_user_session_path data-method='delete' = t "sign_out"
+            - else
+              li
+                a href="sessions/new" = t "sign_in"
+    .container
+      - if alert
+        .alert.alert-error
+          = alert
+          a class="close" data-dismiss="alert" href="#" &times;
+      - if notice
+        .alert.alert-info
+          = notice
+          a class="close" data-dismiss="alert" href="#" &times;
+      == yield

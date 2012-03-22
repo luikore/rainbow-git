@@ -1,0 +1,20 @@
+/ visit password/new, then open mail and got token to open edit password
+h2 = t ".change_password"
+
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+
+  label
+    = t ".new_password"
+    br
+    = f.password_field :password
+
+  label
+    = t ".confirm_new_password"
+    = f.password_field :password_confirmation
+
+  button.btn
+    = t ".change_password"
+
+= render "links"

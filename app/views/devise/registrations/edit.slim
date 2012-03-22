@@ -1,0 +1,37 @@
+h2 = t '.edit_my_profile'
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'well' }) do |f|
+  = devise_error_messages!
+
+  label
+    = t 'name'
+    br
+    input type="text" disabled=true value=resource.name
+
+  label
+    = t 'email'
+    br
+    input type="email" disabled=true value=resource.email
+
+  label
+    = t 'new_password'
+    br
+    = f.password_field :password
+    p.help-block = t ".password_hint"
+
+  label
+    = t 'password_confirmation'
+    br
+    = f.password_field :password_confirmation
+
+  label
+    = t '.current_password'
+    br
+    = f.password_field :current_password, required: true
+    p.help-block = t ".current_password_hint"
+
+  button.btn = t ".update"
+
+h2 = t ".dangerous_zone"
+.well
+  = link_to t(".delete_my_account"), registration_path(resource_name), :confirm => t("are_you_sure"), :method => :delete, :class => 'btn btn-danger'

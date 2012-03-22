@@ -1,0 +1,17 @@
+- file = @path ? File.join(@path, content.name) : content.name
+- log = @source.log(@branch, file, :max_count => 1).last
+tr
+  td
+    - if content.is_a?(Grit::Blob)
+      i.icon-file"
+      = link_to content.name, "/#{@repo.path}/blob/#{@branch}/#{file}"
+    - elsif content.is_a?(Grit::Submodule)
+      i.icon-share
+      = link_to content.basename, content.url(@branch)
+    - else
+      i.icon-folder-open
+      = link_to content.name, "/#{@repo.path}/tree/#{@branch}/#{file}"
+  td
+    = time_ago_in_words(log.committed_date)
+  td
+    = truncate log.message, length: 40

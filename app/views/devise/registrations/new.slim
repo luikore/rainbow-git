@@ -1,0 +1,29 @@
+.container-fluid.well
+  .row-fluid
+    = render "links"
+
+    .span-20
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+        = devise_error_messages!
+
+        label
+          = t 'name'
+          br
+          = f.text_field :name, required: true
+
+        label
+          = t 'email'
+          br
+          = f.email_field :email, required: true
+
+        label
+          = t 'password'
+          br
+          = f.password_field :password, required: true
+
+        label
+          = t 'password_confirmation'
+          br
+          = f.password_field :password_confirmation, required: true
+
+        button.btn = t "sign_up"
