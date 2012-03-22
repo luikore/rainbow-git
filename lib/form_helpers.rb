@@ -17,7 +17,7 @@ module FormHelpers
       params = obj
       body = yield
     else
-      body = yield FormProxy.new obj
+      body = yield Proxy.new obj
     end
     params = params.symbolize_keys
     method = (params.delete(:method) or 'post')

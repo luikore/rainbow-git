@@ -36,4 +36,12 @@ class Hash
     r.sort!
     r * ' '
   end
+
+  def symbolize_keys
+    h = {}
+    each do |key, value|
+      h[key.to_sym] = value
+    end
+    h
+  end
 end
