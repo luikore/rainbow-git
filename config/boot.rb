@@ -4,7 +4,7 @@ require "bundler"
 ENV["RACK_ENV"] ||= "development"
 Bundler.require(:default, ENV["RACK_ENV"].to_sym)
 # init database
-DB = Sequel.sqlite("./db/#{ENV["RACK_ENV"]}.db")
+require_relative "database"
 # init sinatra
 set :sessions, true
 set :root, File.expand_path(".")
