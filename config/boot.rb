@@ -9,6 +9,10 @@ require_relative "database"
 set :sessions, true
 set :root, File.expand_path(".")
 set :views, settings.root + "/app/views"
+# sinatra reloader on development
+if ENV["RACK_ENV"] == "development"
+  require "sinatra/reloader"
+end
 # assetpack support
 assets do
   css_compression :sass
